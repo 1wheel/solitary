@@ -1,5 +1,6 @@
 {
 	"food": {
+		"section": "food",
 		"title": "You have a medical dietary restriction",
 		"q1": {
 			"text": "You're in the mess hall and you can't eat what you've been served. You ______.",
@@ -72,9 +73,10 @@
 		}
 	},	
 	"book": {
+		"section": "book",
 		"title": "You want to read a book.",
 		"q1": {
-			"text": "The bookcard has uninteresting books but your blockmate has offered to slip you one that you would like.",
+			"text": "The book cart has uninteresting books but your blockmate has offered to slip you one that you would like.",
 			"options": {
 				"a":{
 					"text": "Take it.",
@@ -131,7 +133,7 @@
 						"conformity": -5,
 						"health": -5
 					},
-					"result_text": "You protect your standing, but corrections officers see you as a trouble maker..",
+					"result_text": "You protect your standing, but corrections officers see you as a trouble maker.",
 					"solitary": "Maybe. You are at risk for solitary.",
 					"result_bool": "Maybe"
 				}
@@ -139,6 +141,7 @@
 		}
 	},
 	"phone": {
+		"section": "phone",
 		"title": "You want to talk to a family member on the outside.",
 		"q1": {
 			"text": "Call him/her on the phone or write a letter.",
@@ -199,6 +202,7 @@
 		}
 	},	
 	"rec": {
+		"section": "rec",
 		"title": "You go to the rec yard.",
 		"q1": {
 			"text": "Your friends from the old neighborhood approach you.",

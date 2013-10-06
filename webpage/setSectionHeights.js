@@ -87,7 +87,7 @@ function scrollUpdate(){
 		}
 	});
 	sectionLinks
-			.style('font-weight', function(d, i){ return d.name == currentSection ? 700 : 500; })
+			.style('text-decoration', function(d, i){ return d.name == currentSection ? 'underline' : ''; })
 }
 
 

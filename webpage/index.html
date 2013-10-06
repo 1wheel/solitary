@@ -10,6 +10,7 @@
 	<link href="fixed-positioning.css" rel="stylesheet" type="text/css" />
 	<link href="main.css" rel="stylesheet" type="text/css" />
 	<link href="test.css" rel="stylesheet" type="text/css" />
+	<link href="bar-graph/css/styles.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -32,13 +33,28 @@
 	<div class="sectionDiv">
 		<h2>BBC VIDEO OF SUBJECTS EMERGING FROM 48 HOURS IN ISOLATION  </h2>
 		<div id='youtube1'></div>
-<!-- 		<iframe width="560" height="315" src="https://www.youtube.com/embed/0nnekxGE0nM?version=3&start=8&end=36&autoplay=1" frameborder="0" allowfullscreen></iframe>
- -->		
 		<p>But 48 hours is nothing compared to what is common practice in US prisons, where prisoners have spent upwards of 41 years in solitary confinement and TK DURATION is commonplace.</p>
 	</div>
 
 	<div class="sectionDiv">
 		<h2>TEST SUBJECT MORPHS INTO A PRISONER </h2>
+
+		<div id="bar-wrapper">
+			<div id="bar-title"></div>
+			<div id="bar-fifteen-days" class="bar-group">
+				<div class="bar-label"><span>15 days</span> &mdash; The UN's torture threshold</div>
+				<div class="bar-element" data-length="15"></div>
+			</div>
+			<div id="bar-six-years" class="bar-group">
+				<div class="bar-label"><span>6.8 years</span> &mdash; NY state average</div>
+				<div class="bar-element" data-length="2483.65"></div>
+			</div>
+			<div id="bar-forty-years" class="bar-group">
+				<div class="bar-label"><span>41 years</span> &mdash; Longest time spent in solitary</div>
+				<div class="bar-element" data-length="14974.9"></div>
+			</div>
+		</div>
+
 		<p>And despite the demonstrated harm of solitary confinement, prisoners are regularly sent into solitary confinement by corrections personnel for even the mildest of infractions or cause, without the due process of a trial or a jury.  
 
 		(VISUAL OF THE PROCESS FLOW LEADING TO SOLITARY CONFINEMENT, eg. New York 'Tickets', California 'Validation'.  
@@ -79,8 +95,14 @@
 	<script type="text/javascript" src="skrollr.min.js"></script>
 	<script src='d3.js'></script>
 	<script src='jquery.js'></script>
-
+	<script src='underscore.js'></script>
+<!-- 
 	<script src='youtube.js'></script>
+	
+ -->
+ 	<script>function playVideo(){}</script>
+
+	<script src='bar-graph/js/barGraph.js'></script>
 	
 	<script src='setSectionHeights.js'></script>
 

@@ -32,7 +32,7 @@
 	text-align: right;
 }
 .bar-element{
-	background-color: steelblue;
+	background-color: #eae41c;
 	width: 0%;
 	height: 100%;
   -moz-transition: width 1.5s;

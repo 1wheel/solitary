@@ -14,7 +14,6 @@ p{
 	color: #EAE41C;
 }
 
-
 .sectionDiv {
 	width:800px;
 	margin-left: 80px;
@@ -30,6 +29,11 @@ p{
 .sectionGraphic{
 	display:block;
    margin:auto;
+  padding-top: 50px;
+}
+
+p{
+	display: none;
 }
 
 .introDiv{

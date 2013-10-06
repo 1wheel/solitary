@@ -3,13 +3,13 @@ var introPx = 20,
 		exitPx = 20;
 
 var data = [
-	{sound: 'audio/1.ogg', name: 'Mental Toll', 			duration: 40, onView: runOnlyOnce(playVideo)},
-	{sound: 'audio/2.ogg', name: 'Time Alone', 				duration: 40, onView: runOnlyOnce(drawBars)},
-	{sound: 'audio/3.ogg', name: 'Conditions', 				duration: 40, onView: runOnlyOnce(function(){ console.log('testFun'); })},
-	{sound: 'audio/4.ogg', name: 'Ineffective', 			duration: 40, onView: function(){}},
-	{sound: 'audio/5.ogg', name: 'Costly', 						duration: 40, onView: function(){}},
-	{sound: 'audio/6.ogg', name: 'Damage', 						duration: 400, onView: function(){}},
-	{sound: 'audio/6.ogg', name: 'Reform', 						duration: 400, onView: function(){}},
+	{sound: 'sound/2.mp3', name: 'Mental Toll', 			duration: 20*35, onView: runOnlyOnce(playVideo)},
+	{sound: 'sound/4.mp3', name: 'Time Alone', 				duration: 20*46, onView: runOnlyOnce(drawBars)},
+	{sound: 'sound/7.mp3', name: 'Conditions', 				duration: 20*28, 	onView: runOnlyOnce(function(){ console.log('testFun'); })},
+	{sound: 'sound/9.mp3', name: 'Ineffective', 			duration: 20*23, onView: function(){}},
+	{sound: 'sound/10.mp3', name: 'Costly', 					duration: 20*28, onView: function(){}},
+	{sound: 'sound/12.mp3', name: 'Damage', 					duration: 20*29, onView: function(){}},
+	{sound: 'sound/10.mp3', name: 'Reform', 					duration: 20*13, onView: function(){}},
 	{sound: '', 					 name: 'Game', 							duration: 4000, onView: function(){}},
 	{sound: '', 					 name: 'About', 						duration: 400, onView: function(){}}
 ];
@@ -65,7 +65,7 @@ d3.selectAll('#playButton,#headerPlay').on('click', function(){
 	currentlyPlaying = !currentlyPlaying;
 	if (currentlyPlaying){
 		lastScroll = $('body').scrollTop();
-		$('body,html').animate({scrollTop: document.height}, (1 - $('body').scrollTop()/document.height)*document.height*10); 
+		$('body,html').animate({scrollTop: document.height}, (1 - $('body').scrollTop()/document.height)*document.height*30); 
 	}
 	else{
 		$('body,html').stop();

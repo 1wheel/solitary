@@ -5,11 +5,20 @@ var enterPx = 50,
 var data = [
 	{sound: 'audio/1.ogg', duration: 400, onView: function(){}},
 	{sound: 'audio/2.ogg', duration: 400, onView: function(){}},
-	{sound: 'audio/3.ogg', duration: 400, onView: function(){}},
+	{sound: 'audio/3.ogg', duration: 400, onView: runOnlyOnce(function(){ alert('asdfasdf'); })},
 	{sound: 'audio/4.ogg', duration: 400, onView: function(){}},
 	{sound: 'audio/5.ogg', duration: 400, onView: function(){}},
 	{sound: 'audio/6.ogg', duration: 400, onView: function(){}}
 ]
+
+function runOnlyOnce(fun){
+	var ranAlready = false;
+	return function(){
+		if (ranAlready){ return; }
+		ranAlready = true;
+		fun();
+	}
+}
 
 var sectionDivs = d3.selectAll('.sectionDiv')
 		.data(data)
@@ -49,6 +58,7 @@ $(window).scroll(function (){
 	sectionDivs.each(function(d, i){ 
 		if (d3.select(this).style('color') == "rgb(0, 0, 0)"){
 			d3.select(this).select('audio').node().play();
+			d.onView();
 		}
 		else{
 			d3.select(this).select('audio').node().pause();			

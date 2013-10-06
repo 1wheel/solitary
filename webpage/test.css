@@ -9,6 +9,10 @@
 	box-sizing: border-box;
 }
 
-#playButton{
-	bottom:0;
+.introDiv{
+	opacity: 0;
 }
+
+#playButton{
+}
+

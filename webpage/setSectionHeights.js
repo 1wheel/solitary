@@ -1,4 +1,5 @@
-var enterPx = 1,
+var introPx = 20,
+		enterPx = 1,
 		durationPx = 400,
 		exitPx = 25;
 
@@ -48,8 +49,6 @@ d3.select('#playButton').on('click', function(){
 	$('body,html').animate({scrollTop: document.height}, (1 - $('body').scrollTop()/document.height)*60000); 
 });
 
-
-
 $(window).scroll(function (){
 	if (Math.abs($('body').scrollTop() - lastScroll) > 4){
 		$('body,html').stop() 
@@ -65,6 +64,12 @@ $(window).scroll(function (){
 		}
 	});
 });
+
+//
+d3.selectAll('.introDiv').transition()
+		.delay(function(d, i){ return i*2000; })
+		.duration(2000)
+		.style('opacity', 1)
 
 // d3.selectAll('.sectionDiv').each(function(){
 // 	$(this).bind('inview', function (event, visible) {

@@ -19,13 +19,6 @@ html, body {
 }
 
 body {
-	background: #eeeeee;
-	background: -webkit-linear-gradient(top, #eeeeee, #cccccc 100%);
-	background: -moz-linear-gradient(top, #eeeeee, #cccccc 100%);
-	background: -o-linear-gradient(top, #eeeeee, #cccccc 100%);
-	background: -ms-linear-gradient(top, #eeeeee, #cccccc 100%);
-	background: linear-gradient(top, #eeeeee, #cccccc 100%);
-	background-attachment:fixed;
 }
 
 ol, ul {
@@ -73,13 +66,6 @@ h4 {
 	color:#444;
 	font-size:1.11em;
 	margin:1em 0;
-}
-
-#progress {
-	height:2%;
-	background:#444;
-	bottom:0;
-	z-index:200;
 }
 
 #scrollbar {

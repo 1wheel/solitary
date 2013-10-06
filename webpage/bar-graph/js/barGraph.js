@@ -1,5 +1,4 @@
 function drawBars(){
-	console.log('barz');
 	var $fifteen_bar = $('#bar-fifteen-days .bar-element'),
 			$six_bar     = $('#bar-six-years .bar-element'),
 			$forty_bar   = $('#bar-forty-years .bar-element');

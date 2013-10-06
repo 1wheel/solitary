@@ -1,3 +1,21 @@
+body{
+	font: helvetica;
+	background-color: #191717;
+}
+
+h2{
+	color: #95968D;
+	font-size: 41px;
+	font-weight: 700;
+}
+
+p{
+	font-size: 14px;
+	color: #EAE41C;
+}
+
+
+
 .sectionDiv {
 	width:100%;
 	height:100%;
@@ -13,6 +31,31 @@
 	opacity: 0;
 }
 
+#progress {
+	height:35px;
+	width: 100%;
+	background:#EAE41C;
+	top:0;
+	z-index:200;
+}
+
+.headerLink{
+	display: inline-block;
+	width: 100px;
+	margin-top: 2px;
+	color: black;
+	text-decoration: none;
+/*	color: #95968D;
+*/	font-size: 14px;
+	cursor: pointer;
+}
+
+.headerLink:hover{
+	color:#5b4b4b;
+}
+
 #playButton{
 }
+
+
 

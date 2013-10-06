@@ -1,15 +1,15 @@
 var introPx = 20,
-		enterPx = 1,
+		enterPx = 20,
 		durationPx = 400,
-		exitPx = 25;
+		exitPx = 20;
 
 var data = [
-	{sound: 'audio/1.ogg', duration: 400, onView: runOnlyOnce(playVideo)},
-	{sound: 'audio/2.ogg', duration: 400, onView: runOnlyOnce(drawBars)},
-	{sound: 'audio/3.ogg', duration: 400, onView: runOnlyOnce(function(){ console.log('testFun'); })},
-	{sound: 'audio/4.ogg', duration: 400, onView: function(){}},
-	{sound: 'audio/5.ogg', duration: 400, onView: function(){}},
-	{sound: 'audio/6.ogg', duration: 400, onView: function(){}}
+	{sound: 'audio/1.ogg', name: 'BBC VIDEO', 			duration: 400, onView: runOnlyOnce(playVideo)},
+	{sound: 'audio/2.ogg', name: 'TEST SUBJECT', 		duration: 400, onView: runOnlyOnce(drawBars)},
+	{sound: 'audio/3.ogg', name: 'PRISON VIOLENCE', duration: 400, onView: runOnlyOnce(function(){ console.log('testFun'); })},
+	{sound: 'audio/4.ogg', name: 'DEFORM / REFORM ', duration: 400, onView: function(){}},
+	{sound: 'audio/5.ogg', name: 'Costly', duration: 400, onView: function(){}},
+	{sound: 'audio/6.ogg', name: '', duration: 400, onView: function(){}}
 ]
 
 function runOnlyOnce(fun){
@@ -27,58 +27,88 @@ var sectionDivs = d3.selectAll('.sectionDiv')
 			var previousDurations = d3.sum(data
 					.filter(function(d, j){ return j < i; })
 					.map(function(d){ return d.duration }));
-			var offset = (enterPx + exitPx)*i + previousDurations;
+			var offset = (enterPx + exitPx)*i + previousDurations + introPx;
 
 			d3.select(this)
 					.attr(str(offset), "top:100%;color:rgb(0, 0, 1)")
-					.attr(str(offset += enterPx), "top:0%;color:rgb(0, 0, 0)")
-					.attr(str(offset += durationPx), "top:0%;display:block;color:rgb(0, 0, 0)")
-					.attr(str(offset += exitPx), "top:-100%;display:none;;color:rgb(0, 0, 1)")
+					.attr(str(offset+1), "top:0%;color:rgb(0, 0, 1);opacity:0;")
+					.attr(str(offset += enterPx), "top:0%;color:rgb(0, 0, 0);opacity:1")
+					.attr(str(offset += durationPx), "top:0%;display:block;color:rgb(0, 0, 0);opacity:1;")
+					.attr(str(offset += exitPx), "top:0%;display:none;color:rgb(0, 0, 1);opacity:0")
 				.append('audio')
 					.attr('src', function(d, i){ return d.sound; })
 		});
+
+var sectionLinks = d3.select('#progress').selectAll('.sectionLinks')
+		.data(data).enter()
+	.append('a')
+		.classed('headerLink', true)
+		.text(function(d, i){ return d.name; })
+		.on('click', function(d, i){ 
+			linkClick(d, i);
+			//have to wait for skollr to catch up...
+			setTimeout(function(){ linkClick(d, i);}, 50); 
+			setTimeout(function(){ linkClick(d, i);}, 100); 
+			setTimeout(function(){ linkClick(d, i);}, 200); 
+			setTimeout(function(){ linkClick(d, i);}, 400); 
+		});
+
+function linkClick(d, i){
+	//woo copy/paste
+	var previousDurations = d3.sum(data
+		.filter(function(d, j){ return j < i; })
+		.map(function(d){ return d.duration }));
+	var offset = (enterPx + exitPx)*i + previousDurations + introPx;
+
+	//sectionDivs.style('color', 'rgb(0, 0, 1');
+
+	window.scrollTo(0, offset + enterPx);
+	scrollUpdate();
+}
 
 function str(d){ return 'data-' + d; }
 
 
 skrollr.init();
 
-var lastScroll
+var lastScroll;
 d3.select('#playButton').on('click', function(){
 	lastScroll = $('body').scrollTop();
-	$('body,html').animate({scrollTop: document.height}, (1 - $('body').scrollTop()/document.height)*60000); 
+	$('body,html').animate({scrollTop: document.height}, (1 - $('body').scrollTop()/document.height)*document.height*10); 
 });
 
-$(window).scroll(function (){
-	if (Math.abs($('body').scrollTop() - lastScroll) > 4){
+$(window).scroll(scrollUpdate);
+
+
+function scrollUpdate(){
+	if (Math.abs($('body').scrollTop() - lastScroll) > 10){
+		console.log('stopping scroll')
 		$('body,html').stop() 
 	}
-	lastScroll = $('body').scrollTop()
+	lastScroll = $('body').scrollTop();
+
+	var currentSection = '';
 	sectionDivs.each(function(d, i){ 
 		if (d3.select(this).style('color') == "rgb(0, 0, 0)"){
+			console.log(d.name);
 			d3.select(this).select('audio').node().play();
 			d.onView();
+			currentSection = d.name;
 		}
 		else{
 			d3.select(this).select('audio').node().pause();			
 		}
 	});
-});
+	sectionLinks
+			.style('font-weight', function(d, i){ return d.name == currentSection ? 700 : 500; })
+}
 
-//
+
+//on load stuff
+var introDuration = 1000;
 d3.selectAll('.introDiv').transition()
-		.delay(function(d, i){ return i*2000; })
-		.duration(2000)
-		.style('opacity', 1)
+		.delay(function(d, i){ return i*introDuration; })
+		.duration(introDuration)
+		.style('opacity', 1);
 
-// d3.selectAll('.sectionDiv').each(function(){
-// 	$(this).bind('inview', function (event, visible) {
-// 	  if (visible == true) {
-// 	    // element is now visible in the viewport
-// 	  	console.log(d3.select(this).text());
-// 	  } else {
-// 	    // element has gone out of viewport
-// 	    console.log('out');
-// 	  }
-// 	});
-// });
+scrollUpdate();

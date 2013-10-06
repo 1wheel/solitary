@@ -3,9 +3,9 @@ var enterPx = 50,
 		exitPx = 25;
 
 var data = [
-	{sound: 'audio/1.ogg', duration: 400, onView: function(){}},
+	{sound: 'audio/1.ogg', duration: 400, onView: runOnlyOnce(playVideo)},
 	{sound: 'audio/2.ogg', duration: 400, onView: function(){}},
-	{sound: 'audio/3.ogg', duration: 400, onView: runOnlyOnce(function(){ alert('asdfasdf'); })},
+	{sound: 'audio/3.ogg', duration: 400, onView: runOnlyOnce(function(){ console.log('asdfasdf'); })},
 	{sound: 'audio/4.ogg', duration: 400, onView: function(){}},
 	{sound: 'audio/5.ogg', duration: 400, onView: function(){}},
 	{sound: 'audio/6.ogg', duration: 400, onView: function(){}}
@@ -52,7 +52,7 @@ d3.select('#playButton').on('click', function(){
 
 $(window).scroll(function (){
 	if (Math.abs($('body').scrollTop() - lastScroll) > 4){
-	 console.log('sdf');$('body,html').stop() 
+		$('body,html').stop() 
 	}
 	lastScroll = $('body').scrollTop()
 	sectionDivs.each(function(d, i){ 

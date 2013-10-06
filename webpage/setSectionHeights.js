@@ -1,4 +1,4 @@
-var introPx = 20,
+var introPx = 2,
 		enterPx = 20,
 		exitPx = 20;
 
@@ -62,6 +62,7 @@ skrollr.init();
 var lastScroll;
 var currentlyPlaying = false;
 d3.selectAll('#playButton,#headerPlay').on('click', function(){
+	console.log('playClicked');
 	currentlyPlaying = !currentlyPlaying;
 	if (currentlyPlaying){
 		lastScroll = $('body').scrollTop();

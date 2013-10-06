@@ -34,7 +34,7 @@ skrollr.init();
 var lastScroll
 d3.select('#playButton').on('click', function(){
 	lastScroll = $('body').scrollTop();
-	$('body,html').animate({scrollTop: document.height}, 60000); 
+	$('body,html').animate({scrollTop: document.height}, (1 - $('body').scrollTop()/document.height)*60000); 
 });
 
 
@@ -44,7 +44,6 @@ $(window).scroll(function (){
 	 console.log('sdf');$('body,html').stop() 
 	}
 	lastScroll = $('body').scrollTop()
-	console.log(lastScroll);
 	sectionDivs.each(function(d, i){ 
 		if (d3.select(this).style('color') == "rgb(0, 0, 0)"){
 			d3.select(this).select('audio').node().play();

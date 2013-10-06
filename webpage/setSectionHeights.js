@@ -11,10 +11,11 @@ var data = [
 	{sound: 'audio/6.ogg', duration: 400, onView: function(){}}
 ]
 
-d3.selectAll('.sectionDiv')
+var sectionDivs = d3.selectAll('.sectionDiv')
 		.data(data)
 		.each(function(d, i){
-			var offset = (enterPx + durationPx + exitPx)*i;
+			var previousDurations = d3.sum(data.filter(function(d, j){ return j < i; }), function(d){ return d.duration });
+			var offset = (enterPx + exitPx)*i + previousDurations;
 
 			d3.select(this)
 					.attr(str(offset), "top:100%;color:rgb(0, 0, 1)")
@@ -30,10 +31,29 @@ function str(d){ return 'data-' + d; }
 
 skrollr.init();
 
+var lastScroll
 d3.select('#playButton').on('click', function(){
+	lastScroll = $('body').scrollTop();
 	$('body,html').animate({scrollTop: document.height}, 60000); 
 });
 
+
+
+$(window).scroll(function (){
+	if (Math.abs($('body').scrollTop() - lastScroll) > 4){
+	 console.log('sdf');$('body,html').stop() 
+	}
+	lastScroll = $('body').scrollTop()
+	console.log(lastScroll);
+	sectionDivs.each(function(d, i){ 
+		if (d3.select(this).style('color') == "rgb(0, 0, 0)"){
+			d3.select(this).select('audio').node().play();
+		}
+		else{
+			d3.select(this).select('audio').node().pause();			
+		}
+	});
+});
 
 // d3.selectAll('.sectionDiv').each(function(){
 // 	$(this).bind('inview', function (event, visible) {
@@ -46,15 +66,3 @@ d3.select('#playButton').on('click', function(){
 // 	  }
 // 	});
 // });
-
-$(window).scroll(function (){
-	d3.selectAll('.sectionDiv').each(function(d, i){ 
-		if (d3.select(this).style('color') == "rgb(0, 0, 0)"){
-			console.log(i);
-			d3.select(this).select('audio').node().play();
-		}
-		else{
-			d3.select(this).select('audio').node().pause();			
-		}
-	});
-});

@@ -8,3 +8,7 @@
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
+
+#playButton{
+	bottom:0;
+}

@@ -10,7 +10,14 @@ var data = [
 	{sound: 'audio/4.ogg', name: 'DEFORM / REFORM ', duration: 400, onView: function(){}},
 	{sound: 'audio/5.ogg', name: 'Costly', duration: 400, onView: function(){}},
 	{sound: 'audio/6.ogg', name: '', duration: 400, onView: function(){}}
-]
+];
+
+data.forEach(function(d, i){
+	var previousDurations = d3.sum(data
+		.filter(function(d, j){ return j < i; })
+		.map(function(d){ return d.duration }));
+	d.offset = (enterPx + exitPx)*i + previousDurations + introPx;
+});
 
 function runOnlyOnce(fun){
 	var ranAlready = false;
@@ -24,10 +31,7 @@ function runOnlyOnce(fun){
 var sectionDivs = d3.selectAll('.sectionDiv')
 		.data(data)
 		.each(function(d, i){
-			var previousDurations = d3.sum(data
-					.filter(function(d, j){ return j < i; })
-					.map(function(d){ return d.duration }));
-			var offset = (enterPx + exitPx)*i + previousDurations + introPx;
+			var offset = d.offset;
 
 			d3.select(this)
 					.attr(str(offset), "top:100%;color:rgb(0, 0, 1)")
@@ -38,6 +42,7 @@ var sectionDivs = d3.selectAll('.sectionDiv')
 				.append('audio')
 					.attr('src', function(d, i){ return d.sound; })
 		});
+function str(d){ return 'data-' + d; }
 
 var sectionLinks = d3.select('#progress').selectAll('.sectionLinks')
 		.data(data).enter()
@@ -45,28 +50,9 @@ var sectionLinks = d3.select('#progress').selectAll('.sectionLinks')
 		.classed('headerLink', true)
 		.text(function(d, i){ return d.name; })
 		.on('click', function(d, i){ 
-			linkClick(d, i);
-			//have to wait for skollr to catch up...
-			setTimeout(function(){ linkClick(d, i);}, 50); 
-			setTimeout(function(){ linkClick(d, i);}, 100); 
-			setTimeout(function(){ linkClick(d, i);}, 200); 
-			setTimeout(function(){ linkClick(d, i);}, 400); 
+			window.scrollTo(0, d.offset + enterPx);
+			scrollUpdate();
 		});
-
-function linkClick(d, i){
-	//woo copy/paste
-	var previousDurations = d3.sum(data
-		.filter(function(d, j){ return j < i; })
-		.map(function(d){ return d.duration }));
-	var offset = (enterPx + exitPx)*i + previousDurations + introPx;
-
-	//sectionDivs.style('color', 'rgb(0, 0, 1');
-
-	window.scrollTo(0, offset + enterPx);
-	scrollUpdate();
-}
-
-function str(d){ return 'data-' + d; }
 
 
 skrollr.init();
@@ -81,15 +67,16 @@ $(window).scroll(scrollUpdate);
 
 
 function scrollUpdate(){
-	if (Math.abs($('body').scrollTop() - lastScroll) > 10){
+	var scrollPos = $('body').scrollTop()
+	if (Math.abs(scrollPos - lastScroll) > 10){
 		console.log('stopping scroll')
 		$('body,html').stop() 
 	}
-	lastScroll = $('body').scrollTop();
+	lastScroll = scrollPos;
 
 	var currentSection = '';
 	sectionDivs.each(function(d, i){ 
-		if (d3.select(this).style('color') == "rgb(0, 0, 0)"){
+		if (d.offset + enterPx <= scrollPos && scrollPos < d.offset + enterPx + d.duration){
 			console.log(d.name);
 			d3.select(this).select('audio').node().play();
 			d.onView();

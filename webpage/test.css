@@ -15,9 +15,9 @@ p{
 }
 
 
-
 .sectionDiv {
-	width:800%;
+	width:800px;
+	margin-left: 80px;
 	height:100%;
 	padding-top:10%;
 	text-align:left09;
@@ -29,6 +29,10 @@ p{
 
 .introDiv{
 	opacity: 0;
+
+	width:800px;
+	margin-left: 80px;
+	text-align: left
 }
 
 #progress {

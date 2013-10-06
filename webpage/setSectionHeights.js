@@ -1,14 +1,13 @@
 var introPx = 20,
 		enterPx = 20,
-		durationPx = 400,
 		exitPx = 20;
 
 var data = [
-	{sound: 'audio/1.ogg', name: 'BBC Video', 			duration: 400, onView: runOnlyOnce(playVideo)},
-	{sound: 'audio/2.ogg', name: 'Testing', 				duration: 400, onView: runOnlyOnce(drawBars)},
-	{sound: 'audio/3.ogg', name: 'Prison Violence', duration: 400, onView: runOnlyOnce(function(){ console.log('testFun'); })},
-	{sound: 'audio/4.ogg', name: 'Deform/Reform ', 	duration: 400, onView: function(){}},
-	{sound: 'audio/5.ogg', name: 'Costly', 					duration: 400, onView: function(){}},
+	{sound: 'audio/1.ogg', name: 'BBC Video', 			duration: 40, onView: runOnlyOnce(playVideo)},
+	{sound: 'audio/2.ogg', name: 'Testing', 				duration: 40, onView: runOnlyOnce(drawBars)},
+	{sound: 'audio/3.ogg', name: 'Prison Violence', duration: 40, onView: runOnlyOnce(function(){ console.log('testFun'); })},
+	{sound: 'audio/4.ogg', name: 'Deform/Reform ', 	duration: 40, onView: function(){}},
+	{sound: 'audio/5.ogg', name: 'Costly', 					duration: 40, onView: function(){}},
 	{sound: 'audio/6.ogg', name: '', 								duration: 400, onView: function(){}}
 ];
 
@@ -37,7 +36,7 @@ var sectionDivs = d3.selectAll('.sectionDiv')
 					.attr(str(offset), "top:100%;color:rgb(0, 0, 1)")
 					.attr(str(offset+1), "top:0%;color:rgb(0, 0, 1);opacity:0;")
 					.attr(str(offset += enterPx), "top:0%;color:rgb(0, 0, 0);opacity:1")
-					.attr(str(offset += durationPx), "top:0%;display:block;color:rgb(0, 0, 0);opacity:1;")
+					.attr(str(offset += d.duration), "top:0%;display:block;color:rgb(0, 0, 0);opacity:1;")
 					.attr(str(offset += exitPx), "top:0%;display:none;color:rgb(0, 0, 1);opacity:0")
 				.append('audio')
 					.attr('src', function(d, i){ return d.sound; })
@@ -59,7 +58,7 @@ skrollr.init();
 
 var lastScroll;
 var currentlyPlaying = false;
-d3.select('#playButton,#headerPlay').on('click', function(){
+d3.selectAll('#playButton,#headerPlay').on('click', function(){
 	currentlyPlaying = !currentlyPlaying;
 	if (currentlyPlaying){
 		lastScroll = $('body').scrollTop();
@@ -107,8 +106,8 @@ var introNum = d3.selectAll('.introDiv').transition()
 		.duration(introDuration)
 		.style('opacity', 1)
 	.size();
-d3.select('#progress').transition()
-		.delay(introDuration*introNum)
-		.duration(introDuration)
-		.style('opacity', 1);
+// d3.select('#progress').transition()
+// 		.delay(introDuration*introNum)
+// 		.duration(introDuration)
+// 		.style('opacity', 1);
 scrollUpdate();

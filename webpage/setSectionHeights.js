@@ -14,7 +14,9 @@ var data = [
 var sectionDivs = d3.selectAll('.sectionDiv')
 		.data(data)
 		.each(function(d, i){
-			var previousDurations = d3.sum(data.filter(function(d, j){ return j < i; }), function(d){ return d.duration });
+			var previousDurations = d3.sum(data
+					.filter(function(d, j){ return j < i; })
+					.map(function(d){ return d.duration }));
 			var offset = (enterPx + exitPx)*i + previousDurations;
 
 			d3.select(this)

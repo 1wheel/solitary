@@ -1,6 +1,6 @@
 body{
 	font: helvetica;
-	background-color: #191717;
+	background-color: #231F20;
 }
 
 h2{
@@ -25,6 +25,11 @@ p{
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
+}
+
+.sectionGraphic{
+	display:block;
+   margin:auto;
 }
 
 .introDiv{

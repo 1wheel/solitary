@@ -3,12 +3,15 @@ var introPx = 20,
 		exitPx = 20;
 
 var data = [
-	{sound: 'audio/1.ogg', name: 'BBC Video', 			duration: 40, onView: runOnlyOnce(playVideo)},
-	{sound: 'audio/2.ogg', name: 'Testing', 				duration: 40, onView: runOnlyOnce(drawBars)},
-	{sound: 'audio/3.ogg', name: 'Prison Violence', duration: 40, onView: runOnlyOnce(function(){ console.log('testFun'); })},
-	{sound: 'audio/4.ogg', name: 'Deform/Reform ', 	duration: 40, onView: function(){}},
-	{sound: 'audio/5.ogg', name: 'Costly', 					duration: 40, onView: function(){}},
-	{sound: 'audio/6.ogg', name: '', 								duration: 400, onView: function(){}}
+	{sound: 'audio/1.ogg', name: 'Mental Toll', 			duration: 40, onView: runOnlyOnce(playVideo)},
+	{sound: 'audio/2.ogg', name: 'Time Alone', 				duration: 40, onView: runOnlyOnce(drawBars)},
+	{sound: 'audio/3.ogg', name: 'Conditions', 				duration: 40, onView: runOnlyOnce(function(){ console.log('testFun'); })},
+	{sound: 'audio/4.ogg', name: 'Ineffective', 			duration: 40, onView: function(){}},
+	{sound: 'audio/5.ogg', name: 'Costly', 						duration: 40, onView: function(){}},
+	{sound: 'audio/6.ogg', name: 'Damage', 						duration: 400, onView: function(){}},
+	{sound: 'audio/6.ogg', name: 'Reform', 						duration: 400, onView: function(){}},
+	{sound: '', 					 name: 'Game', 							duration: 4000, onView: function(){}},
+	{sound: '', 					 name: 'About', 						duration: 400, onView: function(){}}
 ];
 
 data.forEach(function(d, i){
@@ -33,11 +36,11 @@ var sectionDivs = d3.selectAll('.sectionDiv')
 			var offset = d.offset;
 
 			d3.select(this)
-					.attr(str(offset), "top:100%;color:rgb(0, 0, 1)")
-					.attr(str(offset+1), "top:0%;color:rgb(0, 0, 1);opacity:0;")
-					.attr(str(offset += enterPx), "top:0%;color:rgb(0, 0, 0);opacity:1")
-					.attr(str(offset += d.duration), "top:0%;display:block;color:rgb(0, 0, 0);opacity:1;")
-					.attr(str(offset += exitPx), "top:0%;display:none;color:rgb(0, 0, 1);opacity:0")
+					.attr(str(offset), "top:100%")
+					.attr(str(offset+1), "top:0%;opacity:0;")
+					.attr(str(offset += enterPx), "top:0%;opacity:1")
+					.attr(str(offset += d.duration), "top:0%;display:block;opacity:1;")
+					.attr(str(offset += exitPx), "top:0%;display:none;opacity:0")
 				.append('audio')
 					.attr('src', function(d, i){ return d.sound; })
 		});
@@ -100,7 +103,7 @@ function scrollUpdate(){
 
 
 //on load stuff
-var introDuration = 1000;
+var introDuration = 000;
 var introNum = d3.selectAll('.introDiv').transition()
 		.delay(function(d, i){ return i*introDuration; })
 		.duration(introDuration)

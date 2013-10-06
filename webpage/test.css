@@ -17,10 +17,10 @@ p{
 
 
 .sectionDiv {
-	width:100%;
+	width:800%;
 	height:100%;
 	padding-top:10%;
-	text-align:center;
+	text-align:left09;
 
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -37,6 +37,7 @@ p{
 	background:#EAE41C;
 	top:0;
 	z-index:200;
+	opacity: 0;
 }
 
 .headerLink{
@@ -46,8 +47,7 @@ p{
 	color: black;
 	font-weight: 700;
 	text-decoration: none;
-/*	color: #95968D;
-*/	font-size: 14px;
+	font-size: 14px;
 	cursor: pointer;
 }
 
@@ -56,6 +56,10 @@ p{
 }
 
 #playButton{
+	background-color: #EAE41C;
+	font-size: 50px;
+	padding: 10px;		
+	cursor: pointer;
 }
 
 

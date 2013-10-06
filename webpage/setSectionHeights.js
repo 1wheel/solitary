@@ -4,10 +4,10 @@ var introPx = 20,
 		exitPx = 20;
 
 var data = [
-	{sound: 'audio/1.ogg', name: 'BBC VIDEO', 			duration: 400, onView: runOnlyOnce(playVideo)},
-	{sound: 'audio/2.ogg', name: 'TEST SUBJECT', 		duration: 400, onView: runOnlyOnce(drawBars)},
-	{sound: 'audio/3.ogg', name: 'PRISON VIOLENCE', duration: 400, onView: runOnlyOnce(function(){ console.log('testFun'); })},
-	{sound: 'audio/4.ogg', name: 'DEFORM / REFORM ', duration: 400, onView: function(){}},
+	{sound: 'audio/1.ogg', name: 'BBC Video', 			duration: 400, onView: runOnlyOnce(playVideo)},
+	{sound: 'audio/2.ogg', name: 'Testing', 		duration: 400, onView: runOnlyOnce(drawBars)},
+	{sound: 'audio/3.ogg', name: 'Prison Violence', duration: 400, onView: runOnlyOnce(function(){ console.log('testFun'); })},
+	{sound: 'audio/4.ogg', name: 'Deform/Reform ', duration: 400, onView: function(){}},
 	{sound: 'audio/5.ogg', name: 'Costly', duration: 400, onView: function(){}},
 	{sound: 'audio/6.ogg', name: '', duration: 400, onView: function(){}}
 ];

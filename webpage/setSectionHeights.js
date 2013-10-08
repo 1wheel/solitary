@@ -1,6 +1,6 @@
-var introPx = 2,
-		enterPx = 20,
-		exitPx = 20;
+var introPx = 20,
+		enterPx = 30,
+		exitPx = 10;
 
 var data = [
 	{sound: 'sound/2.mp3', name: 'Mental Toll', 			duration: 20*35, onView: runOnlyOnce(playVideo)},
@@ -104,7 +104,7 @@ function scrollUpdate(){
 
 
 //on load stuff
-var introDuration = 000;
+var introDuration = 2000;
 var introNum = d3.selectAll('.introDiv').transition()
 		.delay(function(d, i){ return i*introDuration; })
 		.duration(introDuration)

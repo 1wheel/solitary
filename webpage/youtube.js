@@ -36,7 +36,7 @@ function playVideo(){
 var done = false;
 function onPlayerStateChange(event) {
   if (event.data == YT.PlayerState.PLAYING && !done) {
-    setTimeout(stopVideo, 7000);
+    setTimeout(stopVideo, 17000);
     done = true;
   }
 }
